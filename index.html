@@ -1,0 +1,1240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ignitive Minds | IT & Cybersecurity Solutions</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --max-width: 1280px;
+            --color-bg: #030712;
+            --color-surface: rgba(17, 24, 39, 0.7);
+            --color-surface-hover: rgba(31, 41, 55, 0.8);
+            --color-text-main: #f9fafb;
+            --color-text-muted: #9ca3af;
+            --color-primary: #fbbf24;
+            --color-primary-glow: rgba(251, 191, 36, 0.3);
+            --color-secondary: #3b82f6;
+            --color-secondary-glow: rgba(59, 130, 246, 0.3);
+            --color-border: rgba(255, 255, 255, 0.1);
+            --color-border-light: rgba(255, 255, 255, 0.2);
+
+            --shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+            --shadow-glow: 0 0 20px var(--color-primary-glow);
+
+            --radius-sm: 0.5rem;
+            --radius-md: 1rem;
+            --radius-lg: 1.5rem;
+            --radius-full: 9999px;
+
+            --transition-bounce: 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            --transition-smooth: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 90px;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+            color: var(--color-text-main);
+            background-color: var(--color-bg);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+            background-image:
+                radial-gradient(circle at 15% 50%, rgba(59, 130, 246, 0.08), transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(251, 191, 36, 0.08), transparent 25%);
+            background-attachment: fixed;
+            width: 100%;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--color-bg);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #374151;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #4b5563;
+        }
+
+        .container {
+            width: 100%;
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 1.25rem;
+        }
+
+        .section {
+            padding: 6rem 0;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3.5rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .section-title {
+            font-size: clamp(1.75rem, 5vw, 3rem);
+            font-weight: 800;
+            margin-bottom: 1.25rem;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #ffffff 0%, #a1a1aa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.2;
+        }
+
+        .section-desc {
+            font-size: clamp(1rem, 3vw, 1.125rem);
+            color: var(--color-text-muted);
+            font-weight: 400;
+            padding: 0 1rem;
+        }
+
+        /* Glassmorphism Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(3, 7, 18, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--color-border);
+            z-index: 1000;
+            transition: all var(--transition-smooth);
+        }
+
+        header.scrolled {
+            background: rgba(3, 7, 18, 0.95);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: #ffffff;
+            text-decoration: none;
+            letter-spacing: -0.03em;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo span {
+            color: var(--color-primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--color-text-muted);
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color var(--transition-smooth);
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+            transition: width var(--transition-smooth);
+            border-radius: 2px;
+        }
+
+        .nav-link:hover {
+            color: #ffffff;
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .nav-link.active {
+            color: #ffffff;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: transparent;
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-sm);
+            padding: 0.5rem;
+            cursor: pointer;
+            color: #ffffff;
+            transition: background var(--transition-smooth);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mobile-menu-btn:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 10rem 0 6rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 30px 30px;
+            mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, transparent 100%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.4rem 0.8rem;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: var(--radius-full);
+            color: var(--color-secondary);
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.25rem, 8vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.25rem;
+            background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 50%, #64748b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.03em;
+            padding: 0 0.5rem;
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 4vw, 1.25rem);
+            color: var(--color-text-muted);
+            max-width: 760px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.7;
+            padding: 0 1rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem 2rem;
+            font-weight: 600;
+            font-size: 1rem;
+            border-radius: var(--radius-full);
+            text-decoration: none;
+            transition: all var(--transition-bounce);
+            cursor: pointer;
+            border: none;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            width: fit-content;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--color-primary), #d97706);
+            color: #000000;
+            box-shadow: 0 8px 20px -8px var(--color-primary);
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, #d97706, var(--color-primary));
+            z-index: -1;
+            transition: opacity var(--transition-smooth);
+            opacity: 0;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 12px 25px -8px var(--color-primary);
+        }
+
+        .btn-primary:hover::before {
+            opacity: 1;
+        }
+
+        /* Responsive Grids */
+        .grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .grid-3 {
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+        }
+
+        .grid-2 {
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 350px), 1fr));
+        }
+
+        .card {
+            background: var(--color-surface);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            transition: all var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--color-primary), transparent);
+            opacity: 0;
+            transition: opacity var(--transition-smooth);
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            background: var(--color-surface-hover);
+            border-color: var(--color-border-light);
+            box-shadow: var(--shadow-glass);
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: rgba(251, 191, 36, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.25rem;
+            color: var(--color-primary);
+        }
+
+        .card-icon.blue {
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--color-secondary);
+        }
+
+        .card-icon svg {
+            width: 22px;
+            height: 22px;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.01em;
+        }
+
+        .card-text {
+            color: var(--color-text-muted);
+            line-height: 1.6;
+            font-size: 0.95rem;
+            flex-grow: 1;
+        }
+
+        .card-list {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 1.25rem;
+        }
+
+        .card-list li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: var(--color-text-muted);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .card-list li::before {
+            content: "→";
+            color: var(--color-secondary);
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-weight: bold;
+        }
+
+        /* Tech Tags */
+        .tech-category {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            padding: 1.75rem;
+            transition: all var(--transition-smooth);
+        }
+
+        .tech-category-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            background: rgba(255, 255, 255, 0.03);
+            color: #e5e7eb;
+            padding: 0.4rem 1rem;
+            border-radius: var(--radius-sm);
+            font-size: 0.85rem;
+            font-weight: 500;
+            border: 1px solid var(--color-border);
+            transition: all var(--transition-smooth);
+        }
+
+        .tag:hover {
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--color-secondary);
+            border-color: var(--color-secondary);
+        }
+
+        /* Industries */
+        .industry-tags {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-top: 2rem;
+        }
+
+        .tag-solid {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--color-border);
+            color: #ffffff;
+            padding: 0.6rem 1.25rem;
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: all var(--transition-smooth);
+        }
+
+        .tag-solid:hover {
+            background: var(--color-primary);
+            border-color: var(--color-primary);
+            color: #000;
+            transform: translateY(-2px);
+        }
+
+        /* Contact Form */
+        .contact-form-wrapper {
+            position: relative;
+            max-width: 100%;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        @media (min-width: 768px) {
+            .contact-form-wrapper {
+                max-width: 600px;
+            }
+        }
+
+        .contact-form-wrapper::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(135deg, var(--color-secondary), var(--color-primary));
+            border-radius: calc(var(--radius-lg) + 2px);
+            z-index: -1;
+            opacity: 0.3;
+            filter: blur(10px);
+        }
+
+        .contact-form {
+            background: #090e1a;
+            padding: 2rem;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--color-border-light);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.25rem;
+            margin-bottom: 1.25rem;
+        }
+
+        @media (min-width: 640px) {
+            .form-row {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+            position: relative;
+            width: 100%;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.4rem;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: #d1d5db;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.85rem 1rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-sm);
+            font-family: inherit;
+            font-size: 0.95rem;
+            color: #ffffff;
+            transition: all var(--transition-smooth);
+        }
+
+        .form-control::placeholder {
+            color: #6b7280;
+        }
+
+        .form-control:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.05);
+            border-color: var(--color-secondary);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 1rem;
+            font-size: 1rem;
+            background: #ffffff;
+            color: #000000;
+            border-radius: var(--radius-sm);
+        }
+
+        .btn-submit:hover {
+            background: var(--color-primary);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-glow);
+        }
+
+        /* Footer */
+        footer {
+            background: #030712;
+            border-top: 1px solid var(--color-border);
+            padding: 3rem 0 1.5rem;
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 0.75rem;
+            display: inline-block;
+            text-decoration: none;
+        }
+
+        .footer-logo span {
+            color: var(--color-primary);
+        }
+
+        .footer-text {
+            color: var(--color-text-muted);
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            padding: 0 1rem;
+        }
+
+        .footer-bottom {
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: #6b7280;
+            font-size: 0.85rem;
+        }
+
+        /* Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Back to top */
+        .back-to-top {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            width: 3rem;
+            height: 3rem;
+            border-radius: var(--radius-full);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--color-border);
+            color: white;
+            font-size: 1.25rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px) scale(0.9);
+            transition: all var(--transition-smooth);
+            z-index: 90;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+
+        .back-to-top:hover {
+            background: var(--color-secondary);
+            border-color: var(--color-secondary);
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
+            transform: translateY(-3px) scale(1.05);
+        }
+
+        /* Mobile specific adjustments */
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: flex;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(3, 7, 18, 0.98);
+                backdrop-filter: blur(20px);
+                -webkit-backdrop-filter: blur(20px);
+                flex-direction: column;
+                gap: 0;
+                padding: 0;
+                border-bottom: 1px solid var(--color-border);
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.4s ease-in-out;
+            }
+
+            .nav-links.active {
+                max-height: 400px;
+            }
+
+            .nav-link {
+                display: block;
+                padding: 1rem 1.5rem;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+                font-size: 1rem;
+            }
+
+            .nav-link::after {
+                display: none;
+            }
+
+            .nav-link:hover {
+                background: rgba(255, 255, 255, 0.02);
+            }
+
+            .section {
+                padding: 4rem 0;
+            }
+
+            .hero {
+                padding: 8rem 0 4rem;
+            }
+
+            .card {
+                padding: 1.5rem;
+            }
+
+            .contact-form {
+                padding: 1.5rem;
+            }
+
+            .tech-category {
+                padding: 1.5rem;
+            }
+
+            .section-header {
+                margin-bottom: 2.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .btn {
+                width: 100%;
+                display: block;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation: none !important;
+                transition: none !important;
+                scroll-behavior: auto !important;
+            }
+
+            .reveal {
+                opacity: 1;
+                transform: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header id="header">
+        <nav class="container nav-container">
+            <a href="#" class="logo">ignite<span>Mind</span></a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation">
+                <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#it-solutions" class="nav-link">IT Solutions</a></li>
+                <li><a href="#cybersecurity" class="nav-link">Cybersecurity</a></li>
+                <li><a href="#technologies" class="nav-link">Technologies</a></li>
+                <li><a href="#why-us" class="nav-link">Why Us</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero container">
+            <div class="reveal">
+                <span class="hero-badge">Next-Gen IT & Security</span>
+                <h1>Architecting Your <br><span style="color: var(--color-primary);">Digital Future</span></h1>
+                <p>
+                    At Ignitive Minds, we help your business scale using AI-powered innovation and military-grade
+                    cybersecurity.
+                    We connect you with elite IT professionals to engineer reliable, tailored technology solutions.
+                    <br><br>
+                    More than just an IT vendor, we are your strategic technology partner. From streamlining
+                    operations to securing critical digital assets, we provide the architecture for your success.
+                </p>
+                <a href="#it-solutions" class="btn btn-primary">Explore Solutions</a>
+            </div>
+        </section>
+
+        <section class="section" id="it-solutions">
+            <div class="container">
+                <div class="section-header reveal">
+                    <h2 class="section-title">IT & Product Development</h2>
+                    <p class="section-desc">We accelerate digital transformation through proven IT frameworks, crafting
+                        tailored architectures to exponentially scale your business.</p>
+                </div>
+
+                <div class="grid grid-3">
+                    <div class="card reveal">
+                        <div class="card-icon">
+                            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Product Development</h3>
+                        <p class="card-text">Crafting visionary products from concept to reality, our elite development
+                            team turns raw ideas into high-impact solutions built for market dominance.</p>
+                    </div>
+
+                    <div class="card reveal">
+                        <div class="card-icon">
+                            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                                <line x1="3" y1="9" x2="21" y2="9" />
+                                <line x1="9" y1="21" x2="9" y2="9" />
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Product Architecture</h3>
+                        <p class="card-text">Strategic design orchestration. We architect the seamless interaction of
+                            complex components for optimal performance, scalability, and pristine user experience.</p>
+                    </div>
+
+                    <div class="card reveal">
+                        <div class="card-icon">
+                            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="18" y1="20" x2="18" y2="10" />
+                                <line x1="12" y1="20" x2="12" y2="4" />
+                                <line x1="6" y1="20" x2="6" y2="14" />
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Power BI Analytics</h3>
+                        <p class="card-text">Unlock granular insights instantly. We transform complex data silos into
+                            stunning, interactive visualizations that drive intelligent executive decisions.</p>
+                    </div>
+
+                    <div class="card reveal">
+                        <div class="card-icon">
+                            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                                <polyline points="22 4 12 14.01 9 11.01" />
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Rigorous QA Testing</h3>
+                        <p class="card-text">Ensure flawless execution. Our automated and manual testing protocols
+                            guarantee optimal functionality, security, and a seamless user journey.</p>
+                    </div>
+
+                    <div class="card reveal" style="grid-column: auto / span 1;">
+                        <div class="card-icon">
+                            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z" />
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Enterprise Cloud Services</h3>
+                        <p class="card-text">Elevate your infrastructure. We deploy cutting-edge Cloud architectures
+                            that deliver infinite scalability, robust data security, and operational efficiency for
+                            modern enterprises.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="cybersecurity">
+            <div class="container">
+                <div class="section-header reveal">
+                    <h2 class="section-title">Cybersecurity Defense</h2>
+                    <p class="section-desc">Protect your digital assets with our specialized, next-generation threat
+                        hunting and compliance protocols.</p>
+                </div>
+
+                <div class="grid grid-3">
+                    <div class="card reveal">
+                        <div class="card-icon blue">
+                            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10" />
+                                <line x1="12" y1="8" x2="12" y2="12" />
+                                <line x1="12" y1="16" x2="12.01" y2="16" />
+                            </svg>
+                        </div>
+                        <h3 class="card-title">VAPT Assessment</h3>
+                        <p class="card-text">Identify and mitigate vulnerabilities before they are exploited. Our
+                            rigorous simulations test networks against advanced persistent threats.</p>
+                        <ul class="card-list">
+                            <li>Deep-scan web, API, mobile, and cloud environments.</li>
+                            <li>Combine automated intelligence with manual exploit testing.</li>
+                            <li>Deliver prioritized, board-ready remediation roadmaps.</li>
+                        </ul>
+                    </div>
+
+                    <div class="card reveal">
+                        <div class="card-icon blue">
+                            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                                <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Application Security</h3>
+                        <p class="card-text">Safeguard software from the ground up. We integrate security into the CI/CD
+                            pipeline, protecting the entire lifecycle.</p>
+                        <ul class="card-list">
+                            <li>Comprehensive source code reviews (SAST/DAST).</li>
+                            <li>Software Composition Analysis for third-party risks.</li>
+                            <li>Strict alignment with OWASP Top 10 and MITRE ATT&CK.</li>
+                        </ul>
+                    </div>
+
+                    <div class="card reveal">
+                        <div class="card-icon blue">
+                            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Compliance & GRC</h3>
+                        <p class="card-text">Meet stringent global regulatory requirements. We strengthen governance and
+                            engineer unshakeable risk management frameworks.</p>
+                        <ul class="card-list">
+                            <li>Embed GRC protocols directly into core workflows.</li>
+                            <li>Benchmark against ISO 27001, NIST, and SOC2.</li>
+                            <li>Facilitate enterprise-wide technology risk audits.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="technologies">
+            <div class="container">
+                <div class="section-header reveal">
+                    <h2 class="section-title">Technology Stack</h2>
+                    <p class="section-desc">We leverage a modern, enterprise-grade technology ecosystem to build
+                        resilient and scalable digital solutions.</p>
+                </div>
+
+                <div class="grid grid-2">
+                    <div class="tech-category reveal">
+                        <h3 class="tech-category-title">
+                            <svg width="20" height="20" fill="none" stroke="var(--color-primary)" stroke-width="2">
+                                <path
+                                    d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+                                <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
+                                <line x1="12" y1="22.08" x2="12" y2="12" />
+                            </svg>
+                            AI & Data Engineering
+                        </h3>
+                        <div class="tech-tags">
+                            <span class="tag">AI / ML</span>
+                            <span class="tag">Python</span>
+                            <span class="tag">Langchain</span>
+                            <span class="tag">Power BI</span>
+                            <span class="tag">Power Automate</span>
+                        </div>
+                    </div>
+
+                    <div class="tech-category reveal">
+                        <h3 class="tech-category-title">
+                            <svg width="20" height="20" fill="none" stroke="var(--color-secondary)" stroke-width="2">
+                                <polyline points="16 18 22 12 16 6" />
+                                <polyline points="8 6 2 12 8 18" />
+                            </svg>
+                            Web & Backend
+                        </h3>
+                        <div class="tech-tags">
+                            <span class="tag">React.js</span>
+                            <span class="tag">Node.js</span>
+                            <span class="tag">Java</span>
+                            <span class="tag">Next.js</span>
+                            <span class="tag">Nest.js</span>
+                            <span class="tag">WordPress</span>
+                            <span class="tag">PWA</span>
+                        </div>
+                    </div>
+
+                    <div class="tech-category reveal">
+                        <h3 class="tech-category-title">
+                            <svg width="20" height="20" fill="none" stroke="var(--color-primary)" stroke-width="2">
+                                <rect x="5" y="2" width="14" height="20" rx="2" ry="2" />
+                                <line x1="12" y1="18" x2="12.01" y2="18" />
+                            </svg>
+                            Mobile & Wearable
+                        </h3>
+                        <div class="tech-tags">
+                            <span class="tag">React Native</span>
+                            <span class="tag">Flutter</span>
+                            <span class="tag">iOS</span>
+                            <span class="tag">Android</span>
+                            <span class="tag">watchOS</span>
+                            <span class="tag">tvOS</span>
+                            <span class="tag">Xamarin</span>
+                        </div>
+                    </div>
+
+                    <div class="tech-category reveal">
+                        <h3 class="tech-category-title">
+                            <svg width="20" height="20" fill="none" stroke="var(--color-secondary)" stroke-width="2">
+                                <path d="M17.5 19c-2.5 0-4.5-2-4.5-4.5s2-4.5 4.5-4.5 4.5 2 4.5 4.5-2 4.5-4.5 4.5z" />
+                                <path
+                                    d="M22 14.5A4.5 4.5 0 0 0 17.5 10a4.5 4.5 0 0 0-4.4 3.7A5 5 0 0 0 2 15c0 2.8 2.2 5 5 5h10.5" />
+                            </svg>
+                            Cloud & Infrastructure
+                        </h3>
+                        <div class="tech-tags">
+                            <span class="tag">AWS</span>
+                            <span class="tag">Google Cloud</span>
+                            <span class="tag">Microsoft Azure</span>
+                            <span class="tag">Firebase</span>
+                            <span class="tag">Salesforce</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="why-us">
+            <div class="container">
+                <div class="section-header reveal">
+                    <h2 class="section-title">Why Ignitive Minds?</h2>
+                    <p class="section-desc">We do not just write code; we build the foundational systems that empower
+                        your business to lead its industry.</p>
+                </div>
+
+                <div class="grid grid-2">
+                    <div class="card reveal">
+                        <h3 class="card-title" style="color: var(--color-primary);">Frictionless Integration</h3>
+                        <p class="card-text">Deploy technology changes seamlessly. Our intuitive architectures and
+                            dedicated support ensure zero operational downtime during transitions.</p>
+                    </div>
+                    <div class="card reveal">
+                        <h3 class="card-title" style="color: var(--color-secondary);">Accelerated Growth</h3>
+                        <p class="card-text">Scale without limits. We engineer adaptive technology that automatically
+                            aligns with your expanding business metrics and market demands.</p>
+                    </div>
+                    <div class="card reveal">
+                        <h3 class="card-title" style="color: var(--color-secondary);">Future-Proof Branding</h3>
+                        <p class="card-text">Position your brand at the vanguard of innovation. Our cutting-edge UI/UX
+                            implementations captivate users and establish market authority.</p>
+                    </div>
+                    <div class="card reveal">
+                        <h3 class="card-title" style="color: var(--color-primary);">Ironclad Compliance</h3>
+                        <p class="card-text">Eliminate systemic vulnerabilities. Our zero-trust cybersecurity approach
+                            is built precisely to the rigorous standards demanded by enterprise boards.</p>
+                    </div>
+                </div>
+
+                <div class="reveal" style="margin-top: 4rem; text-align: center;">
+                    <h3 style="font-size: 1.25rem; color: #fff; margin-bottom: 1.5rem;">Industries We Revolutionize</h3>
+                    <div class="industry-tags">
+                        <span class="tag-solid">Healthcare</span>
+                        <span class="tag-solid">Financial Services</span>
+                        <span class="tag-solid">EdTech</span>
+                        <span class="tag-solid">Sports & Media</span>
+                        <span class="tag-solid">Human Capital</span>
+                        <span class="tag-solid">Retail & E-commerce</span>
+                        <span class="tag-solid">Entertainment</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="contact">
+            <div class="container">
+                <div class="section-header reveal">
+                    <h2 class="section-title">Initiate a Project</h2>
+                    <p class="section-desc">Connect with our engineering leadership to architect your next digital
+                        breakthrough.</p>
+                </div>
+
+                <div class="reveal contact-form-wrapper">
+                    <form class="contact-form" action="https://formsubmit.co/contact@ignitiveminds.com" method="POST">
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_next" value="https://yourwebsite.com/thanks.html">
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name" class="form-label">Full Name</label>
+                                <input type="text" id="name" name="name" class="form-control" required
+                                    placeholder="Jane Doe">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email" class="form-label">Corporate Email</label>
+                                <input type="email" id="email" name="email" class="form-control" required
+                                    placeholder="jane@company.com">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subject" class="form-label">Inquiry Subject</label>
+                            <input type="text" id="subject" name="subject" class="form-control" required
+                                placeholder="e.g., Cloud Migration Architecture">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message" class="form-label">Project Details</label>
+                            <textarea id="message" name="message" class="form-control" required
+                                placeholder="Describe your technical requirements or challenges..."></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-submit">Send Secure Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <a href="#" class="footer-logo">ignite<span>Mind</span></a>
+            <p class="footer-text">Engineering digital excellence and securing the future of modern enterprise.</p>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Ignitive Minds. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <button class="back-to-top" id="backToTop" aria-label="Scroll to top">
+        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="M18 15l-6-6-6 6" />
+        </svg>
+    </button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
+            const navToggle = document.getElementById('mobileMenuBtn');
+            const navLinks = document.getElementById('navLinks');
+
+            navToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                const icon = navLinks.classList.contains('active')
+                    ? '<line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line>'
+                    : '<line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line>';
+                navToggle.innerHTML = `<svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${icon}</svg>`;
+            });
+
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                    navToggle.innerHTML = `<svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>`;
+                });
+            });
+
+            const revealElements = document.querySelectorAll('.reveal');
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.05,
+                rootMargin: "0px 0px -20px 0px"
+            });
+
+            revealElements.forEach(el => revealObserver.observe(el));
+
+            const sections = document.querySelectorAll('main section[id]');
+            const navItems = document.querySelectorAll('.nav-link');
+
+            const scrollSpyObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const currentId = entry.target.getAttribute('id');
+                        navItems.forEach(item => {
+                            item.classList.remove('active');
+                            if (item.getAttribute('href') === `#${currentId}`) {
+                                item.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: "-20% 0px -60% 0px"
+            });
+
+            sections.forEach(section => scrollSpyObserver.observe(section));
+
+            const backToTopBtn = document.getElementById('backToTop');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 400) {
+                    backToTopBtn.classList.add('visible');
+                } else {
+                    backToTopBtn.classList.remove('visible');
+                }
+            });
+
+            backToTopBtn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+
+</html>
